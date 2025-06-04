@@ -1,4 +1,4 @@
-# 🔥 AshBoard – Cadastro de Alertas de Desastres Naturais
+# 🔥 AshBoard – Cadastro de Alertas de Desastres
 
 ## 📌 Sobre o Projeto
 
