@@ -138,9 +138,3 @@ Com ele, conseguimos:
 ---
 
 ### 🧠 Desenvolvido por **Equipe N.I.M.**
-
-
----
-
-Se quiser, posso gerar o arquivo `README.md` direto para download. E assim que tiver os controllers, posso adicionar os endpoints no mesmo padrão da versão anterior. Deseja isso?
-```
