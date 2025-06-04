@@ -18,6 +18,14 @@ A solução busca **facilitar a comunicação rápida e eficaz entre moradores d
 
 ---
 
+## 🎥 Demonstração
+
+📡 [Link para a solução em nuvem](https://ashboard-app-apcgcfbcdad3edd2.brazilsouth-01.azurewebsites.net/usuarios)
+
+📹 [Assista no YouTube]()
+
+---
+
 ## 🧱 Arquitetura
 
 O projeto segue o padrão MVC, com divisão clara de responsabilidades:
@@ -224,12 +232,6 @@ docker exec -it ollama ollama pull deepseek-coder
 ## 📊 Observabilidade
 
 Acesse [http://localhost:9090/targets](http://localhost:9090/targets) para visualizar os alvos do Prometheus e garantir que o monitoramento está ativo.
-
----
-
-## 🎥 Demonstração
-
-📹 [Assista no YouTube]()
 
 ---
 
