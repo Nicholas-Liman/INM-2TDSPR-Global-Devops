@@ -25,18 +25,21 @@ A solução busca **facilitar a comunicação rápida e eficaz entre moradores d
 
 
 ## 🏗️ Arquitetura do Projeto
+A arquitetura do AshBoard foi projetada para funcionar de forma completamente integrada dentro do ecossistema Microsoft Azure, aproveitando os recursos de nuvem para garantir escalabilidade, segurança e alta disponibilidade.
 
-Abaixo está o diagrama da arquitetura geral do projeto, representando a estrutura de microsserviços, integração com banco de dados na nuvem, monitoramento e APIs:
+A aplicação segue o padrão MVC (Model-View-Controller) com uma organização clara em camadas, e conta com os seguintes componentes principais:
 
+☁️ Camada de Infraestrutura (Azure)
+Azure App Service: Hospeda o web app em Java Spring Boot, responsável por servir as páginas HTML com Thymeleaf e expor os endpoints REST da aplicação.
+
+Azure SQL Server: Banco de dados relacional hospedado na nuvem, onde são armazenadas as entidades da aplicação, como Alerta, Usuário, Funcionário, Histórico, entre outras.
+
+Autenticação via Active Directory (opcional): Configuração de segurança para acesso ao banco de dados e à aplicação.
+
+Monitoramento com Prometheus e Spring Boot Admin: Permite a observabilidade do ambiente, incluindo métricas, status da aplicação e performance em tempo real.
+
+### 🏗️ Aqui esta a representação gráfica
 <p align="center"> <img src="https://cdn.discordapp.com/attachments/700444108380045382/1379897920983400458/Global_Devops_Arquitetura_do_Projeto_NIM.drawio.png?ex=6841e995&is=68409815&hm=3b91b45e6ad129ffa9a21fa37d14c8009b29e64efe166b34f0d6904daff301a6&" alt="Arquitetura do Projeto" width="800"/> </p>
-
-O projeto segue o padrão MVC, com divisão clara de responsabilidades:
-
-* `Model` – Representação das entidades como `Alerta`, `Funcionario`, `Endereco`, etc.
-* `Repository` – Interfaces de persistência via Spring Data JPA
-* `Service` – Camada de regras de negócio e manipulação de dados
-* `Controller` – Controle de rotas para as páginas web e ações do usuário
-* `View` – Telas HTML com **Thymeleaf**
 
 ---
 
