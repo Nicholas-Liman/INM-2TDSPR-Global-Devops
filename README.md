@@ -1,4 +1,3 @@
-
 # 🔥 AshBoard – Cadastro de Alertas de Desastres Naturais
 
 ## 📌 Sobre o Projeto
@@ -6,52 +5,52 @@
 Este projeto foi desenvolvido como parte da disciplina **Java Advanced**, com foco em **Spring Boot**, **MVC** e **implantação em nuvem (Azure)**, pela equipe N.I.M.:
 
 👥 **Integrantes**
-- 🏆 **Igor Gabriel Marcondes** – RM553544  
-- 🏆 **Maria Beatriz Fogolin** – RM552669  
-- 🏆 **Nicholas Barbosa Lima** – RM552744  
 
-🎯 **Objetivo**
----
+* 🏆 **Igor Gabriel Marcondes** – RM553544
+* 🏆 **Maria Beatriz Fogolin** – RM552669
+* 🏆 **Nicholas Barbosa Lima** – RM552744
 
-A aplicação tem como objetivo oferecer uma plataforma para **cadastro e gerenciamento de usuários e alertas de desastres naturais**. Por meio de operações completas de **CRUD (Create, Read, Update, Delete)**, usuários autenticados podem registrar e divulgar **alertas em tempo real**, informando a ocorrência de eventos como **enchentes, incêndios, deslizamentos** ou outros desastres em sua região.
+## 🎯 **Objetivo**
 
-A solução busca **facilitar a comunicação rápida e eficaz entre moradores de áreas afetadas**, promovendo **maior segurança e conscientização**. Toda a aplicação é construída com **Java Spring Boot** e **Thymeleaf**, com **implantação em nuvem (Azure App Service)** e **persistência de dados em um banco SQL Server hospedado na Azure**.
+A aplicação tem como objetivo oferecer uma plataforma para o **cadastro e gerenciamento de usuários e alertas de desastres naturais**. Por meio de operações completas de **CRUD (Create, Read, Update, Delete)**, usuários autenticados podem registrar e divulgar **alertas em tempo real**, informando a ocorrência de eventos como **enchentes, incêndios, deslizamentos** ou outros desastres em sua região.
+
+A solução busca **facilitar a comunicação rápida e eficaz entre moradores de áreas afetadas**, promovendo **maior segurança e conscientização**. Toda a aplicação é construída com **Java Spring Boot** e **Thymeleaf**, com **implantação em nuvem via Azure App Service** e **persistência de dados em banco SQL Server hospedado na Azure**.
 
 ---
 
 ## 🧱 Arquitetura
 
-O projeto segue o padrão MVC com divisão clara de responsabilidades:
+O projeto segue o padrão MVC, com divisão clara de responsabilidades:
 
-- `Model` – Representação das entidades como `Alerta`, `Funcionario`, `Endereco`, etc.  
-- `Repository` – Interfaces para persistência via Spring Data JPA  
-- `Service` – Regras de negócio e manipulação de dados  
-- `Controller` – Rotas de controle para páginas web e ações do usuário  
-- `View` – Telas em HTML com **Thymeleaf**
+* `Model` – Representação das entidades como `Alerta`, `Funcionario`, `Endereco`, etc.
+* `Repository` – Interfaces de persistência via Spring Data JPA
+* `Service` – Camada de regras de negócio e manipulação de dados
+* `Controller` – Controle de rotas para as páginas web e ações do usuário
+* `View` – Telas HTML com **Thymeleaf**
 
 ---
 
 ## 🛠️ Tecnologias Utilizadas
 
-- ✅ **Java 17**  
-- ✅ **Spring Boot 3.3**  
-- ✅ **Spring Data JPA**  
-- ✅ **Thymeleaf**  
-- ✅ **SQL Server (Azure)**  
-- ✅ **Deploy via Azure App Service**  
-- ✅ **Spring Security**  
-- ✅ **Docker**  
-- ✅ **Prometheus e Spring Boot Admin**  
-- ✅ **Integração com IA via API (DeepSeek)**
+* ✅ **Java 17**
+* ✅ **Spring Boot 3.3**
+* ✅ **Spring Data JPA**
+* ✅ **Thymeleaf**
+* ✅ **SQL Server (Azure)**
+* ✅ **Deploy via Azure App Service**
+* ✅ **Spring Security**
+* ✅ **Docker**
+* ✅ **Prometheus & Spring Boot Admin**
+* ✅ **Integração com IA via API (DeepSeek)**
 
 ---
 
 ## ⚙️ Requisitos
 
-- [Java 17+](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)  
-- [Maven 3.8+](https://maven.apache.org/download.cgi)  
-- Conta na **Azure** com App Service e SQL Server provisionados  
-- IDE (IntelliJ, VS Code, Eclipse)
+* [Java 17+](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
+* [Maven 3.8+](https://maven.apache.org/download.cgi)
+* Conta na **Azure** com App Service e SQL Server provisionados
+* IDE (IntelliJ, VS Code ou Eclipse)
 
 ---
 
@@ -66,13 +65,13 @@ cd ashboard-java
 
 # Execute com Maven
 ./mvnw spring-boot:run
-````
+```
 
 > Acesse a aplicação: `http://localhost:8080`
 
-⚠️ **Em produção**, a aplicação será hospedada em:
+⚠️ **Em produção**, a aplicação está disponível em:
 
-```bash
+```
 https://ashboard-java.azurewebsites.net/
 ```
 
@@ -80,7 +79,7 @@ https://ashboard-java.azurewebsites.net/
 
 ## 🌐 Conexão com Banco de Dados (Azure)
 
-A aplicação está conectada a um banco SQL Server na Azure, com autenticação via Active Directory:
+A aplicação conecta-se a um banco SQL Server hospedado na Azure, utilizando autenticação via Active Directory:
 
 ```yaml
 spring:
@@ -105,7 +104,7 @@ spring:
 | hora  | Time   | Hora do desastre                |
 | tipo  | String | Tipo de desastre (ex: enchente) |
 
-### 👤 Funcionario
+### 👤 Funcionário
 
 | Campo | Tipo   | Descrição         |
 | ----- | ------ | ----------------- |
@@ -113,7 +112,7 @@ spring:
 | nome  | String | Nome completo     |
 | cargo | String | Cargo ocupacional |
 
-### 🧍 Usuario
+### 🧍 Usuário
 
 | Campo | Tipo   | Descrição           |
 | ----- | ------ | ------------------- |
@@ -129,21 +128,21 @@ spring:
 
 | Campo              | Valor                                                                   |
 | ------------------ | ----------------------------------------------------------------------- |
-| Nome               | Teste inicial                                                           |
+| Nome               | Teste Inicial                                                           |
 | Sobrenome          | Spring                                                                  |
 | CPF                | 599.972.590-92                                                          |
 | Telefone           | 1234567890                                                              |
 | E-mail             | [mariateste.fogolin@example.com](mailto:mariateste.fogolin@example.com) |
 | Data de nascimento | 01/01/1990                                                              |
 
-> Histórico do usuário é criado automaticamente com 1 alerta.
+> Um histórico do usuário é criado automaticamente com 1 alerta.
 
 ### ⚠️ Alerta
 
 | Campo       | Valor                        |
 | ----------- | ---------------------------- |
 | Evento      | Teste de Alerta              |
-| Gravidade   | 3 (moderada)                 |
+| Gravidade   | 3 (Moderada)                 |
 | Localização | -23.5505, -46.6333           |
 | Data/Hora   | Gerados em tempo de execução |
 
@@ -173,7 +172,7 @@ spring:
 
 ### 🧠 IA
 
-* `POST /deepseek-r1-query`: envia uma pergunta e recebe resposta de modelo AI.
+* `POST /deepseek-r1-query` – Envia uma pergunta e retorna a resposta da IA
 
 ### 🔔 Alerta
 
@@ -224,7 +223,7 @@ docker exec -it ollama ollama pull deepseek-coder
 
 ## 📊 Observabilidade
 
-Acesse [http://localhost:9090/targets](http://localhost:9090/targets) para visualizar os targets do Prometheus e garantir que o monitoramento está ativo.
+Acesse [http://localhost:9090/targets](http://localhost:9090/targets) para visualizar os alvos do Prometheus e garantir que o monitoramento está ativo.
 
 ---
 
@@ -241,14 +240,14 @@ Este projeto demonstra como construir uma aplicação Java Spring Boot com:
 * ✅ Interface web com Thymeleaf
 * ✅ Backend robusto com autenticação
 * ✅ Deploy em nuvem (Azure App Service)
-* ✅ Integração com Banco de Dados em Azure SQL Server
+* ✅ Integração com banco de dados (Azure SQL Server)
 * ✅ Arquitetura limpa com MVC
 * ✅ Observabilidade e testes
-* ✅ IA via API
+* ✅ Integração com IA via API
 * ✅ Inicialização com dados reais
 
 ---
 
 ### 🧠 Desenvolvido por **Equipe N.I.M.**
 
-```
+---
