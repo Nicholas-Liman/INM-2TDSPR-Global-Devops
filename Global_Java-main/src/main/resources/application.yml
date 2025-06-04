@@ -1,0 +1,100 @@
+spring:
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+  config:
+    name: N.I.M
+  application:
+    name: N.I.M Global
+
+  ai:
+    ollama:
+      base-url: http://ollama:11434
+      chat:
+        options:
+          model: deepseek-coder
+
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: Ov23liS9eSVfZUUYayB4
+            client-secret: 4eba32ecba04f980d3e6527d496604e8d01f46a8
+            scope: read:user,user:email
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            client-name: GitHub
+        provider:
+          github:
+            authorization-uri: https://github.com/login/oauth/authorize
+            token-uri: https://github.com/login/oauth/access_token
+            user-info-uri: https://api.github.com/user
+            user-name-attribute: login
+
+  datasource:
+    url: jdbc:sqlserver://sqlserver-global.database.windows.net:1433;database=NIM-2TDSPR-GlobalSolution;encrypt=true;trustServerCertificate=false;loginTimeout=30;
+    username: NIM
+    password: devops@Fiap2tds
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  jpa:
+    hibernate:
+      ddl-auto: create
+    database-platform: org.hibernate.dialect.SQLServerDialect
+    properties:
+      "[hibernate.generate_statistics]" : false
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    listener:
+      simple:
+        message-converter: jackson2JsonMessageConverter
+      deserialization:
+        trusted-packages: com.fiap.globaljava.model
+
+springdoc:
+  api-docs:
+    path: /api-docs
+
+jwt:
+  secret-key: 890uirwjggifokrwjpgeo5yldfsopgis80f7erw8fuyw9f8ew9f7w4r67347f397tyfg347f367ferw7fr7efger77rtgw7erfw7yfeuyfwe67rfwef67w78erfwe7
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  info:
+    env:
+      enabled: true
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+    metrics:
+      enabled: true
+    info:
+      enabled: true
+    auditevents:
+      enabled: true
+    prometheus:
+      enabled: true
+info:
+  application:
+    nome: ${spring.application.name}
+    descricao: Aplicação MVC para a global solutions
+
+  admin:
+    image:
+
+server:
+  port: 8082
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.web: DEBUG
+    org.hibernate.SQL: DEBUG

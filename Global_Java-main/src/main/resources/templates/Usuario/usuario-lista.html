@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Usuários</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .cabecalho {
+            background-color: #0066ff;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        .cabecalho__menu {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .cabecalho__menu__link {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .cabecalho__menu__link:hover {
+            text-decoration: underline;
+        }
+
+        .style-tabela table {
+            float: left;
+            border: 1px solid #ccc;
+            border-bottom: 0;
+            border-right: 0;
+            font-size: 0.8em;
+            width: 100%;
+        }
+
+        .style-tabela table tr td {
+            padding: 0.5em;
+            border: 1px solid #ccc;
+            border-top: 0;
+            border-left: 0;
+            text-align: center;
+        }
+
+        .style-tabela table td.top {
+            background-color: #003EA6;
+            color: #fff;
+            font-size: 1.2em;
+        }
+
+        .style-tabela tbody tr {
+            background-color: #fff;
+            color: #666;
+        }
+
+        .style-tabela tbody tr:hover {
+            background-color: #f4f4f4;
+            color: #00bcc4;
+        }
+
+        .style-tabela tbody tr td .editar {
+            color: #00d549;
+            font-size: 1.2em;
+            font-weight: bold;
+            display: inline;
+            text-decoration: none;
+        }
+
+        .style-tabela tbody tr td .deletar {
+            color: #bf303c;
+            font-size: 1.2em;
+            font-weight: bold;
+            display: inline;
+            text-decoration: none;
+        }
+
+        .titulo {
+            color: #757575;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        .button-form {
+            background-color: #39f;
+            padding: 5px 10px;
+            color: #fff;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .borda-inversa {
+            transition-duration: 0.5s;
+            transition-property: background;
+            box-shadow: inset 0 0 0 2px #39f, 0 0 1px rgba(0, 0, 0, 0);
+        }
+
+        .borda-inversa:hover {
+            background: none;
+            color: #39f;
+        }
+    </style>
+</head>
+<body>
+<header class="cabecalho">
+    <nav class="cabecalho__menu">
+        <a class="cabecalho__menu__link" href="/usuarios" th:text="#{menu.usuarios}">Usuários</a>
+        <a class="cabecalho__menu__link" href="/historicos" th:text="#{menu.historicos}">Históricos</a>
+        <a class="cabecalho__menu__link" href="/funcionarios" th:text="#{menu.funcionarios}">Funcionários</a>
+        <a class="cabecalho__menu__link" href="/alertas" th:text="#{menu.registros}">Registros dos alertas</a>
+    </nav>
+</header>
+
+<div style="text-align: right; margin: 1rem;">
+    <a href="?lang=pt">Português</a> | <a href="?lang=en">English</a>
+</div>
+
+<h2 class="titulo" th:text="#{usuarios.cadastrados}">Usuários Cadastrados</h2>
+
+<div class="style-tabela">
+    <table>
+        <thead>
+        <tr>
+            <td class="top center"><i class="fa fa-user-md"></i></td>
+            <td class="top center"><strong th:text="#{usuario.cpf}">CPF</strong></td>
+            <td class="top center"><strong th:text="#{usuario.nome}">Nome</strong></td>
+            <td class="top center"><strong th:text="#{usuario.sobrenome}">Sobrenome</strong></td>
+            <td class="top center"><strong th:text="#{usuario.email}">Email</strong></td>
+            <td class="top center"><strong th:text="#{usuario.dataNascimento}">Data de nascimento</strong></td>
+            <td class="top center" colspan="3"><strong th:text="#{acoes}">Ações</strong></td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="usuario : ${usuarios}">
+            <td align="center"><i class="fa fa-calendar-check"></i></td>
+            <td align="center" th:text="${usuario.cpfUser}">CPF</td>
+            <td align="center" th:text="${usuario.nomeUser}">Nome</td>
+            <td align="center" th:text="${usuario.sobrenomeUser}">Sobrenome</td>
+            <td align="center" th:text="${usuario.emailUser}">Email</td>
+            <td align="center" th:text="${usuario.dataNascimentoUser}">Data</td>
+            <td align="center">
+                <a th:href="@{/usuarios/{cpfUser}(cpfUser=${usuario.cpfUser})}"
+                   class="editar fas fa-search"
+                   th:title="#{visualizar}" th:text="#{visualizar}">View</a>
+            </td>
+            <td align="center">
+                <a th:href="@{/usuarios/editar/{cpfUser}(cpfUser=${usuario.cpfUser})}"
+                   class="editar fa fa-check-circle"
+                   th:title="#{editar}" th:text="#{editar}">Editar</a>
+            </td>
+            <td align="center">
+                <a th:href="@{/usuarios/deletar/{cpf}(cpf=${usuario.cpfUser})}"
+                   class="deletar fa fa-edit"
+                   th:title="#{excluir}" th:text="#{excluir}"
+                   th:onclick="'return confirm(\'' + #{confirmar.exclusao} + '\');'"
+                   >Excluir</a>
+            </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="9" align="center">
+                <a href="/usuarios/novo" class="button-form borda-inversa" th:text="#{novo.usuario}">Novo Usuário</a>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+</body>
+</html>

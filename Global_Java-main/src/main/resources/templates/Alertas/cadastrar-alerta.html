@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Novo Alerta</title>
+  <style>
+    /* Estilos visuais */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    .cabecalho {
+      background-color: #0066ff;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .cabecalho__menu {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .cabecalho__menu__link {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .cabecalho__menu__link:hover {
+      text-decoration: underline;
+    }
+    .titulo {
+      text-align: center;
+      margin: 1rem 0;
+      font-size: 1.5em;
+      color: #555;
+    }
+    .formulario {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .label {
+      display: block;
+      margin-bottom: 1rem;
+    }
+    .input-bordas {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+    .botoes {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+    .button-form {
+      background-color: #39f;
+      padding: 10px 20px;
+      color: #fff;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .botao-voltar {
+      background-color: #ccc;
+      color: #333;
+    }
+    .alert {
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    .alert-danger {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+    .alert-success {
+      background-color: #d4edda;
+      color: #155724;
+    }
+    .erro {
+      color: red;
+      font-size: 14px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div th:if="${erro}" class="alert alert-danger">
+  <p th:text="${erro}"></p>
+</div>
+<div th:if="${sucesso}" class="alert alert-success">
+  <p th:text="${sucesso}"></p>
+</div>
+
+<header class="cabecalho">
+  <nav class="cabecalho__menu">
+    <a class="cabecalho__menu__link" href="/usuarios" th:text="#{menu.usuarios}">Usuários</a>
+    <a class="cabecalho__menu__link" href="/historicos" th:text="#{menu.historicos}">Históricos</a>
+    <a class="cabecalho__menu__link" href="/funcionarios" th:text="#{menu.funcionarios}">Funcionários</a>
+    <a class="cabecalho__menu__link" href="/alertas" th:text="#{menu.registros}">Registros dos alertas</a>
+  </nav>
+</header>
+
+<h2 class="titulo">Cadastro de Alerta</h2>
+
+<form class="formulario" id="formAlerta"
+      th:action="@{/alertas/novo/{cpf}(cpf=${cpf})}"
+      method="post"
+      th:object="${alerta}">
+
+
+  <p><strong>CPF do Usuário:</strong> <span th:text="${cpf}"></span></p>
+
+  <label class="label">
+    Data do alerta:
+    <input type="date" class="input-bordas" th:field="*{dataAlerta}" required>
+  </label>
+
+  <label class="label">
+    Horário do alerta:
+    <input type="time" class="input-bordas" th:field="*{horario}" required>
+  </label>
+
+  <label class="label">
+    Latitude:
+    <input type="number" class="input-bordas" step="0.000001" th:field="*{latitude}" required>
+  </label>
+
+  <label class="label">
+    Longitude:
+    <input type="number" class="input-bordas" step="0.000001" th:field="*{longitude}" required>
+  </label>
+
+  <label class="label">
+    Evento:
+    <input type="text" class="input-bordas" th:field="*{evento}" required maxlength="255">
+  </label>
+
+  <label class="label">
+    Gravidade (1 a 5):
+    <input type="number" class="input-bordas" min="1" max="5" th:field="*{gravidade}" required>
+  </label>
+
+  <div class="botoes">
+    <a href="/alertas" class="button-form botao-voltar">Voltar</a>
+    <button type="submit" class="button-form">Salvar</button>
+  </div>
+</form>
+
+
+</body>
+</html>

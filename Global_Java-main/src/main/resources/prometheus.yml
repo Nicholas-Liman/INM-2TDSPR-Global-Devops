@@ -1,0 +1,17 @@
+global:
+  scrape_interval: 1m
+
+scrape_configs:
+  - job_name: "api-challenge"
+    metrics_path: "/actuator/prometheus"
+    static_configs:
+      - targets: ["nim:8082"]
+    basic_auth:
+      username: "admin"
+      password: "admin123"
+
+
+  - job_name: "rabbitmq"
+    metrics_path: "/metrics"
+    static_configs:
+      - targets: ["rabbitmq:15692"]

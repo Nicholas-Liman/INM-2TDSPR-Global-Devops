@@ -1,0 +1,75 @@
+version: "3.8"
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    networks:
+      - aw-network
+
+  nim:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nim
+    ports:
+      - "8080:8080"
+      - "8082:8082"
+    depends_on:
+      - rabbitmq
+      - ollama
+    networks:
+      - aw-network
+
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./src/main/resources/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    ports:
+      - "9090:9090"
+    networks:
+      - aw-network
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    networks:
+      - aw-network
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama:/root/.ollama
+    networks:
+      - aw-network
+    restart: always
+
+
+
+
+volumes:
+  prometheus-data:
+  rabbitmq_data:
+  grafana-data:
+  ollama:
+
+networks:
+  aw-network:
+    driver: bridge

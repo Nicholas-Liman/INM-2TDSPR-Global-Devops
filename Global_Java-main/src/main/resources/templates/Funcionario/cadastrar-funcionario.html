@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Funcionario</title>
+    <link rel="stylesheet" href="/templates/styles/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .cabecalho {
+            background-color: #0066ff;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        .cabecalho__menu {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .cabecalho__menu__link {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .cabecalho__menu__link:hover {
+            text-decoration: underline;
+        }
+
+        .titulo {
+            color: #757575;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        .formulario {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            overflow: hidden;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+
+        :focus {
+            outline: none;
+        }
+
+        .label {
+            float: left;
+            width: 100%;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .input-bordas {
+            font: 15px/24px "Lato", Arial, sans-serif;
+            color: #333;
+            width: 100%;
+            box-sizing: border-box;
+            letter-spacing: 1px;
+            border: 1px solid #ccc;
+            padding: 7px 14px 9px;
+            transition: 0.4s;
+        }
+
+        .botoes {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .button-form {
+            background-color: #39f;
+            padding: 10px 20px;
+            color: #fff;
+            font-size: 1.2em;
+            border: none;
+            cursor: pointer;
+            width: 48%;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .botao-voltar {
+            background-color: #ccc;
+            color: #333;
+        }
+
+        .alert {
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            max-height: 100px; /* Define a altura máxima */
+
+        }
+
+    </style>
+</head>
+<body>
+<div th:if="${sucesso}" class="alert alert-success">
+    <p th:text="${sucesso}"></p>
+</div>
+
+<header class="cabecalho">
+    <nav class="cabecalho__menu">
+        <a class="cabecalho__menu__link" href="/usuarios" th:text="#{menu.usuarios}">Usuários</a>
+        <a class="cabecalho__menu__link" href="/historicos" th:text="#{menu.historicos}">Históricos</a>
+        <a class="cabecalho__menu__link" href="/funcionarios" th:text="#{menu.funcionarios}">Funcionários</a>
+        <a class="cabecalho__menu__link" href="/alertas" th:text="#{menu.registros}">Registros dos alertas</a>
+    </nav>
+</header>
+
+<h2 class="titulo">Cadastrar Funcionario</h2>
+<form class="formulario" action="/funcionarios/novo" method="post" th:object="${funcionario}">
+    <div th:if="${erro}" class="alert alert-danger">
+        <p th:text="${erro}"></p>
+    </div>
+    <label class="label">
+        <input type="text" class="input-bordas" name="registroFuncionario" placeholder="Registro do Funcionario" th:field="*{registroFuncionario}" required>
+    </label>
+
+    <label class="label">
+        <input type="text" class="input-bordas" placeholder="Nome do Funcionario" th:field="*{nomeFuncionario}" required>
+    </label>
+
+    <label class="label">
+        <input type="text" class="input-bordas" placeholder="Sobrenome do Funcionario" th:field="*{sobrenomeFuncionario}" required>
+    </label>
+
+    <label class="label">
+        <input type="text" class="input-bordas" placeholder="Telefone do Funcionario" th:field="*{telefoneFuncionario}" required>
+    </label>
+
+    <label class="label">
+    <select class="input-bordas" th:field="*{tipoFuncionario}" required title="Tipo de Funcionario">
+        <option value="">Tipo de Funcionario</option>
+        <option value="Bombeiro">Bombeiro</option>
+        <option value="Defesa civil">Defesa civil</option>
+        <option value="Resgate">Resgate</option>
+    </select>
+    </label>
+
+
+    <label for="dataInscricao" class="label">Data de Inscrição:
+    <input type="date" id="dataInscricao" class="input-bordas" th:field="*{dataInscricaoFuncionario}" required>
+    </label>
+
+
+    <label class="label">
+        <input type="email" class="input-bordas" placeholder="Email do Funcionario" th:field="*{emailFuncionario}" required>
+    </label>
+
+    <h3 class="titulo">Endereço</h3>
+
+    <label class="label">
+        <input type="text" class="input-bordas" placeholder="Rua"
+               th:field="*{endereco.ruaEndereco}" required maxlength="25"
+               pattern="[A-Za-zÀ-ÿ0-9\s\-]{2,}"
+               title="Digite uma rua válida (mínimo 2 caracteres)">
+    </label>
+
+    <label class="label">
+        <input type="number" class="input-bordas" placeholder="Número"
+               th:field="*{endereco.numeroEndereco}" required min="1" max="99999"
+               title="Digite um número válido para o endereço.">
+    </label>
+
+    <label class="label">
+        <input type="text" class="input-bordas" placeholder="Complemento (opcional)"
+               th:field="*{endereco.complementoEndereco}" maxlength="20"
+               pattern="[A-Za-zÀ-ÿ0-9\s\-]{0,20}"
+               title="Complemento pode conter letras e números.">
+    </label>
+
+    <label class="label">
+        <input type="text" class="input-bordas" placeholder="Bairro"
+               th:field="*{endereco.bairroEndereco}" required maxlength="20"
+               pattern="[A-Za-zÀ-ÿ0-9\s\-]{2,}"
+               title="Digite um bairro válido.">
+    </label>
+
+    <label class="label">
+        <input type="text" class="input-bordas" placeholder="Cidade"
+               th:field="*{endereco.cidadeEndereco}" required maxlength="30"
+               pattern="[A-Za-zÀ-ÿ\s\-]{2,}"
+               title="Digite uma cidade válida.">
+    </label>
+
+    <label class="label">
+        <input type="text" class="input-bordas" placeholder="CEP (Ex: 00000-000)"
+               th:field="*{endereco.cepEndereco}" required maxlength="9"
+               pattern="\d{5}-?\d{3}"
+               title="Digite um CEP válido (ex: 12345-678)">
+    </label>
+
+    <label class="label">
+        <select class="input-bordas" th:field="*{endereco.estadoEndereco}" required title="Selecione o estado">
+            <option value="">Selecione o estado</option>
+            <option value="AC">AC</option>
+            <option value="AL">AL</option>
+            <option value="AP">AP</option>
+            <option value="AM">AM</option>
+            <option value="BA">BA</option>
+            <option value="CE">CE</option>
+            <option value="DF">DF</option>
+            <option value="ES">ES</option>
+            <option value="GO">GO</option>
+            <option value="MA">MA</option>
+            <option value="MT">MT</option>
+            <option value="MS">MS</option>
+            <option value="MG">MG</option>
+            <option value="PA">PA</option>
+            <option value="PB">PB</option>
+            <option value="PR">PR</option>
+            <option value="PE">PE</option>
+            <option value="PI">PI</option>
+            <option value="RJ">RJ</option>
+            <option value="RN">RN</option>
+            <option value="RS">RS</option>
+            <option value="RO">RO</option>
+            <option value="RR">RR</option>
+            <option value="SC">SC</option>
+            <option value="SP">SP</option>
+            <option value="SE">SE</option>
+            <option value="TO">TO</option>
+        </select>
+    </label>
+
+    <div class="botoes">
+        <a href="/funcionarios" class="button-form borda-inversa botao-voltar">Voltar</a>
+        <button class="button-form borda-inversa" type="submit">Salvar</button>
+    </div>
+</form>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const registroInput = document.querySelector("input[name='registroFuncionario']");
+
+        if (registroInput) {
+            registroInput.addEventListener("blur", function () {
+                let valor = registroInput.value.replace(/\D/g, ""); // Remove não dígitos
+                if (valor.length > 0 && valor.length < 8) {
+                    registroInput.value = valor.padStart(8, "0");
+                }
+            });
+        }
+    });
+</script>
+
+</body>
+</html>

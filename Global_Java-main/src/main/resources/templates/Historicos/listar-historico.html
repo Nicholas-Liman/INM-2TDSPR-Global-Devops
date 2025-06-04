@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Histórico</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .cabecalho {
+            background-color: #0066ff;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        .cabecalho__menu {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .cabecalho__menu__link {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .cabecalho__menu__link:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .titulo {
+            color: #003EA6;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-align: center;
+            border-bottom: 2px solid #0066ff;
+            padding-bottom: 0.5rem;
+        }
+
+        .info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            font-size: 1em;
+            color: #333;
+        }
+
+        .info .icon {
+            margin-right: 0.5rem;
+            color: #0066ff;
+            min-width: 25px;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: #0066ff;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 1rem;
+            text-align: center;
+            transition: background 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #0052cc;
+        }
+
+        .lista-sensores {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .lista-sensores li {
+            background-color: #f9f9f9;
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            border-left: 4px solid #39f;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<header class="cabecalho">
+    <nav class="cabecalho__menu">
+        <a class="cabecalho__menu__link" href="/usuarios">Usuários</a>
+        <a class="cabecalho__menu__link" href="/funcionarios">Funcionários</a>
+        <a class="cabecalho__menu__link" href="/alertas">Alertas</a>
+        <a class="cabecalho__menu__link" href="/historicos">Históricos</a>
+    </nav>
+</header>
+
+<div class="container">
+    <h2 class="titulo">Detalhes do Histórico</h2>
+
+    <div class="info">
+        <i class="fa fa-id-badge icon"></i>
+        <strong>ID do Histórico:</strong> <span th:text="${historico.id}"></span>
+    </div>
+
+    <div class="info">
+        <i class="fa fa-user icon"></i>
+        <strong>Usuário:</strong>
+        <span th:text="${historico.usuario.nomeUser} + ' ' + ${historico.usuario.sobrenomeUser}"></span>
+    </div>
+
+    <div class="info">
+        <i class="fa fa-bell icon"></i>
+        <strong>Quantidade de Alertas:</strong> <span th:text="${historico.quantidadeAlertas}"></span>
+    </div>
+
+    <div class="info">
+        <i class="fa fa-list icon"></i>
+        <strong>Alertas:</strong>
+    </div>
+    <ul class="lista-sensores">
+        <li th:each="alerta : ${historico.alertas}">
+            <span th:text="'[' + ${#dates.format(alerta.dataAlerta, 'dd/MM/yyyy')} + ' ' + ${alerta.horario} + '] ' + ${alerta.evento} + ' - ' + ${alerta.gravidade}"></span>
+        </li>
+        <li th:if="${#lists.isEmpty(historico.alertas)}">Nenhum alerta associado.</li>
+    </ul>
+
+    <a href="/historicos" class="button">Voltar</a>
+</div>
+
+</body>
+</html>
