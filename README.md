@@ -16,7 +16,6 @@ A aplicação tem como objetivo oferecer uma plataforma para o **cadastro e gere
 
 A solução busca **facilitar a comunicação rápida e eficaz entre moradores de áreas afetadas**, promovendo **maior segurança e conscientização**. Toda a aplicação é construída com **Java Spring Boot** e **Thymeleaf**, com **implantação em nuvem via Azure App Service** e **persistência de dados em banco SQL Server hospedado na Azure**.
 
----
 
 ## 🎥 Demonstração
 
@@ -24,7 +23,6 @@ A solução busca **facilitar a comunicação rápida e eficaz entre moradores d
 
 📹 [Assista no YouTube]()
 
----
 
 ## 🏗️ Arquitetura do Projeto
 
