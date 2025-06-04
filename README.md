@@ -26,7 +26,8 @@ A solução busca **facilitar a comunicação rápida e eficaz entre moradores d
 
 ---
 
-🏗️ Arquitetura do Projeto
+##🏗️ Arquitetura do Projeto
+
 Abaixo está o diagrama da arquitetura geral do projeto, representando a estrutura de microsserviços, integração com banco de dados na nuvem, monitoramento e APIs:
 
 <p align="center"> <img src="https://cdn.discordapp.com/attachments/700444108380045382/1379897920983400458/Global_Devops_Arquitetura_do_Projeto_NIM.drawio.png?ex=6841e995&is=68409815&hm=3b91b45e6ad129ffa9a21fa37d14c8009b29e64efe166b34f0d6904daff301a6&" alt="Arquitetura do Projeto" width="800"/> </p>
