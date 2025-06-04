@@ -9,7 +9,6 @@ import com.example.globaljava.model.Funcionario;
 import com.example.globaljava.model.Endereco;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +23,6 @@ import java.util.Optional;
 public class FuncionarioController {
 
     private final FuncionarioRepository funcionarioRepository;
-    private final RabbitTemplate rabbitTemplate;
     private final ObjectMapper objectMapper;
     private final EnderecoRepository enderecoRepository;
 
@@ -86,7 +84,6 @@ public class FuncionarioController {
 
             try {
                 String funcionarioJson = objectMapper.writeValueAsString(funcionarioAtualizado);
-                rabbitTemplate.convertAndSend("funcionarioExchange", "routingKey", funcionarioJson);
                 System.out.println("📩 Mensagem enviada para a fila: " + funcionarioJson);
             } catch (JsonProcessingException e) {
                 System.err.println("❌ Erro ao serializar o objeto Funcionario: " + e.getMessage());

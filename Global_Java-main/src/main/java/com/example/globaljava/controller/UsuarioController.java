@@ -7,7 +7,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,7 +23,6 @@ import java.util.Optional;
 public class UsuarioController {
 
     private final UsuarioRepository usuarioRepository;
-    private final RabbitTemplate rabbitTemplate;
     private final ObjectMapper objectMapper;
 
 
@@ -112,7 +110,6 @@ public class UsuarioController {
 
             try {
                 String usuarioJson = objectMapper.writeValueAsString(usuarioAtualizado);
-                rabbitTemplate.convertAndSend("usuarioExchange", "routingKey", usuarioJson);
                 System.out.println("📩 Mensagem enviada para a fila: " + usuarioJson);
             } catch (JsonProcessingException e) {
                 System.err.println("❌ Erro ao serializar o objeto Usuario: " + e.getMessage());
