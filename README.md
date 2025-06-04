@@ -11,8 +11,11 @@ Este projeto foi desenvolvido como parte da disciplina **Java Advanced*, com foc
 
 🎯 **Objetivo**
 ---
-A aplicação tem como objetivo oferecer uma plataforma para cadastro e gerenciamento de usuários e alertas de desastres naturais. Por meio de operações completas de CRUD (Create, Read, Update, Delete), usuários autenticados podem registrar e divulgar alertas em tempo real, informando a ocorrência de eventos como enchentes, incêndios, deslizamentos ou outros desastres em sua região. A solução busca facilitar a comunicação rápida e eficaz entre moradores de áreas afetadas, promovendo maior segurança e conscientização. Toda a aplicação é construída com Java Spring Boot e Thymeleaf, com implantação em nuvem (Azure App Service) e persistência de dados em um banco SQL Server hospedado na Azure.
----
+
+A aplicação tem como objetivo oferecer uma plataforma para **cadastro e gerenciamento de usuários e alertas de desastres naturais**. Por meio de operações completas de **CRUD (Create, Read, Update, Delete)**, usuários autenticados podem registrar e divulgar **alertas em tempo real**, informando a ocorrência de eventos como **enchentes, incêndios, deslizamentos** ou outros desastres em sua região.
+
+A solução busca **facilitar a comunicação rápida e eficaz entre moradores de áreas afetadas**, promovendo **maior segurança e conscientização**. Toda a aplicação é construída com **Java Spring Boot** e **Thymeleaf**, com **implantação em nuvem (Azure App Service)** e **persistência de dados em um banco SQL Server hospedado na Azure**.
+
 
 ## 🧱 Arquitetura
 
