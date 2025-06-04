@@ -26,7 +26,7 @@ A solução busca **facilitar a comunicação rápida e eficaz entre moradores d
 
 ---
 
-##🏗️ Arquitetura do Projeto
+## 🏗️ Arquitetura do Projeto
 
 Abaixo está o diagrama da arquitetura geral do projeto, representando a estrutura de microsserviços, integração com banco de dados na nuvem, monitoramento e APIs:
 
