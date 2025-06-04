@@ -228,18 +228,6 @@ Acesse [http://localhost:9090/targets](http://localhost:9090/targets) para visua
 
 ---
 
-## 🏗️ Modelagem do Banco
-
-### Modelo Lógico
-
-![Modelo Lógico](Imagens/Logical.png)
-
-### Modelo Físico
-
-![Modelo Físico](Imagens/Relational_1.png)
-
----
-
 ## 🎥 Demonstração
 
 📹 [Assista no YouTube]()
