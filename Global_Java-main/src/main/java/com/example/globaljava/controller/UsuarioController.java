@@ -97,28 +97,22 @@ public class UsuarioController {
 
         if (usuarioOptional.isPresent()) {
             Usuario usuarioCadastrado = usuarioOptional.get();
-            Usuario usuarioAtualizado = Usuario.builder()
-                    .cpfUser(usuarioCadastrado.getCpfUser())
-                    .dataNascimentoUser(usuarioCadastrado.getDataNascimentoUser())
-                    .emailUser(usuarioParam.getEmailUser())
-                    .nomeUser(usuarioParam.getNomeUser())
-                    .sobrenomeUser(usuarioParam.getSobrenomeUser())
-                    .telefoneUser(usuarioParam.getTelefoneUser())
-                    .endereco(usuarioCadastrado.getEndereco())
-                    .historico(usuarioCadastrado.getHistorico())
-                    .build();
 
-            try {
-                String usuarioJson = objectMapper.writeValueAsString(usuarioAtualizado);
-                System.out.println("📩 Mensagem enviada para a fila: " + usuarioJson);
-            } catch (JsonProcessingException e) {
-                System.err.println("❌ Erro ao serializar o objeto Usuario: " + e.getMessage());
-            }
+
+            usuarioCadastrado.setEmailUser(usuarioParam.getEmailUser());
+            usuarioCadastrado.setNomeUser(usuarioParam.getNomeUser());
+            usuarioCadastrado.setSobrenomeUser(usuarioParam.getSobrenomeUser());
+            usuarioCadastrado.setTelefoneUser(usuarioParam.getTelefoneUser());
+
+
+            usuarioRepository.save(usuarioCadastrado);
+
             return new ModelAndView("redirect:/usuarios", "sucesso", "Usuário atualizado com sucesso!");
         }
 
         return new ModelAndView("Usuario/editar-usuario", "erro", "Erro ao atualizar o usuário.");
     }
+
 
 
     @GetMapping("/deletar/{cpf}")
