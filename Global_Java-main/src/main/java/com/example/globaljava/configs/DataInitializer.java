@@ -56,16 +56,17 @@ public class DataInitializer {
         historico.setUsuario(usuarioSalvo);
         historicoRepository.save(historico);
 
-        Alerta alerta = alertaRepository.save(Alerta.builder()
-                .dataAlerta(new java.sql.Date(System.currentTimeMillis()))
-                .horario(java.time.LocalTime.now())
-                .latitude(-23.5505)
-                .longitude(-46.6333)
-                .evento("Teste de Alerta")
-                .gravidade(3)
-                .usuario(usuarioSalvo)
-                .historico(historico)
-                .build());
+        Alerta alerta = new Alerta();
+        alerta.setDataAlerta(new java.sql.Date(System.currentTimeMillis()));
+        alerta.setHorario(java.time.LocalTime.now());
+        alerta.setLatitude(-23.5505);
+        alerta.setLongitude(-46.6333);
+        alerta.setEvento("Teste de Alerta");
+        alerta.setGravidade(3);
+        alerta.setUsuario(usuarioSalvo);
+        alerta.setHistorico(historico);
+        alerta = alertaRepository.save(alerta);
+
 
         historico.getAlertas().add(alerta);
         historico.setQuantidadeAlertas(historico.getQuantidadeAlertas() + 1);

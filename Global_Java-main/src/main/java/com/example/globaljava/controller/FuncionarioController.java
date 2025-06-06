@@ -82,12 +82,7 @@ public class FuncionarioController {
                     .endereco(antigo.getEndereco())
                     .build();
 
-            try {
-                String funcionarioJson = objectMapper.writeValueAsString(funcionarioAtualizado);
-                System.out.println("📩 Mensagem enviada para a fila: " + funcionarioJson);
-            } catch (JsonProcessingException e) {
-                System.err.println("❌ Erro ao serializar o objeto Funcionario: " + e.getMessage());
-            }
+            funcionarioRepository.save(funcionarioAtualizado);
 
             return new ModelAndView("redirect:/funcionarios", "sucesso", "Funcionário atualizado com sucesso!");
         }

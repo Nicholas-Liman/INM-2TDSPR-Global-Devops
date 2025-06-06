@@ -44,16 +44,16 @@ spring:
     properties:
       "[hibernate.generate_statistics]" : false
 
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
-    listener:
-      simple:
-        message-converter: jackson2JsonMessageConverter
-      deserialization:
-        trusted-packages: com.fiap.globaljava.model
+#  rabbitmq:
+#    host: localhost
+#    port: 5672
+#    username: guest
+#    password: guest
+#    listener:
+#      simple:
+#        message-converter: jackson2JsonMessageConverter
+#      deserialization:
+#        trusted-packages: com.fiap.globaljava.model
 
 springdoc:
   api-docs:
