@@ -21,7 +21,7 @@ A solução busca **facilitar a comunicação rápida e eficaz entre moradores d
 
 📡 [Link para a solução em nuvem](https://ashboard-app-apcgcfbcdad3edd2.brazilsouth-01.azurewebsites.net/usuarios)
 
-📹 [Assista no YouTube]()
+📹 [Assista no YouTube](https://www.youtube.com/watch?v=eARgBmrowOA)
 
 
 ## 🏗️ Arquitetura do Projeto
